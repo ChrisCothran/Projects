@@ -1,0 +1,315 @@
+VBA Code for Excel Data Viewer and Updater
+
+
+Private Sub ComboBox1_Change()
+Call Listfacilities
+
+End Sub
+
+
+
+Sub Listfacilities()
+
+
+Dim selectedItem As String
+Dim ws As Worksheet
+Dim lastRow As Long
+Dim i As Long
+Dim result As Variant
+
+selectedItem = ComboBox1.Value
+
+'' If ListBox1.ListIndex = -1 And ComboBox1.Value = "" Then
+    
+
+
+If ListBox1.ListIndex <> -1 Then
+    selectedItem = ListBox1.Value
+    ComboBox1.Value = selectedItem
+    
+End If
+
+' Assuming "selectedItem" holds the value from the ComboBox
+
+' Set reference to the worksheet
+Set ws = ThisWorkbook.Sheets("Capacity Sheet")
+' Find the last row with data in Column A
+lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
+
+'Loop through the range to find a match
+    For i = 2 To lastRow
+        If ws.Cells(i, 1).Value = selectedItem Then
+            result = ws.Cells(i, 1).Value
+            Exit For
+        End If
+    Next i
+
+TextBox1.Value = result
+
+TextBox2.Value = ws.Cells(i, 2).Value
+TextBox4.Value = ws.Cells(i, 3).Value
+TextBox3.Value = ws.Cells(i, 4).Value
+TextBox6.Value = ws.Cells(i, 5).Value
+TextBox7.Value = ws.Cells(i, 6).Value
+TextBox8.Value = ws.Cells(i, 7).Value
+TextBox5.Value = ws.Cells(i, 8).Value
+TextBox10.Value = ws.Cells(i, 9).Value
+TextBox11.Value = ws.Cells(i, 10).Value
+TextBox12.Value = ws.Cells(i, 11).Value
+TextBox9.Value = ws.Cells(i, 12).Value
+TextBox14.Value = ws.Cells(i, 13).Value
+TextBox15.Value = ws.Cells(i, 14).Value
+TextBox16.Value = ws.Cells(i, 15).Value
+TextBox13.Value = ws.Cells(i, 16).Value
+
+TextBox17.Value = ws.Cells(i, 17).Value
+TextBox18.Value = ws.Cells(i, 18).Value
+TextBox20.Value = ws.Cells(i, 19).Value
+TextBox19.Value = ws.Cells(i, 20).Value
+TextBox22.Value = ws.Cells(i, 21).Value
+TextBox23.Value = ws.Cells(i, 22).Value
+TextBox24.Value = ws.Cells(i, 23).Value
+TextBox21.Value = ws.Cells(i, 24).Value
+TextBox26.Value = ws.Cells(i, 25).Value
+TextBox27.Value = ws.Cells(i, 26).Value
+TextBox28.Value = ws.Cells(i, 27).Value
+TextBox25.Value = ws.Cells(i, 28).Value
+TextBox30.Value = ws.Cells(i, 29).Value
+TextBox31.Value = ws.Cells(i, 30).Value
+TextBox32.Value = ws.Cells(i, 31).Value
+TextBox29.Value = ws.Cells(i, 32).Value
+TextBox34.Value = ws.Cells(i, 33).Value
+TextBox35.Value = ws.Cells(i, 34).Value
+TextBox36.Value = ws.Cells(i, 35).Value
+TextBox33.Value = ws.Cells(i, 36).Value
+TextBox39.Value = ws.Cells(i, 37).Value
+TextBox40.Value = ws.Cells(i, 38).Value
+TextBox42.Value = ws.Cells(i, 39).Value
+TextBox41.Value = ws.Cells(i, 40).Value
+TextBox44.Value = ws.Cells(i, 41).Value
+TextBox45.Value = ws.Cells(i, 42).Value
+TextBox46.Value = ws.Cells(i, 43).Value
+TextBox43.Value = ws.Cells(i, 44).Value
+TextBox48.Value = ws.Cells(i, 45).Value
+TextBox49.Value = ws.Cells(i, 46).Value
+TextBox50.Value = ws.Cells(i, 47).Value
+
+
+Me.ListBox1.Clear
+
+plant = ws.Cells(i, 14).Value
+
+
+
+    
+    ' Clear ListBox
+    Me.ListBox1.Clear
+    
+    ' Populate ListBox with all IDs associated with the same plant
+    For Each cell In ws.Range("A2:A" & ws.Cells(ws.Rows.Count, "A").End(xlUp).Row)
+        If cell.Offset(0, 13).Value = plant Then
+            Me.ListBox1.AddItem cell.Value
+        End If
+    Next cell
+
+    
+'  ' Find the plant associated with the selected ID
+'    For Each cell In ws.Range("A2:A" & ws.Cells(ws.Rows.Count, "A").End(xlUp).Row)
+'        If cell.Value = selectedItem Then
+'            plant = cell.Offset(0, 14).Value
+'            Exit For
+'        End If
+'    Next cell
+
+End Sub
+
+
+
+
+
+
+
+Private Sub ComboBox2_Change()
+
+End Sub
+
+Private Sub CommandButton1_Click()
+Dim selectedItem As String
+Dim ws As Worksheet
+Dim lastRow As Long
+Dim i As Long
+Dim result As Variant
+selectedItem = ComboBox1.Value
+rownumber = ComboBox1.ListIndex
+
+' Assuming "selectedItem" holds the value from the ComboBox
+
+' Set reference to the worksheet
+Set ws = ThisWorkbook.Sheets("Capacity Sheet")
+' Find the last row with data in Column A
+lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
+
+'Loop through the range to find a match
+    For i = 2 To lastRow
+        If ws.Cells(i, 1).Value = selectedItem Then
+            result = ws.Cells(i, 1).Value
+            Exit For
+        End If
+    Next i
+
+ws.Cells(i, 2).Value = TextBox2.Value
+ws.Cells(i, 3).Value = TextBox4.Value
+ws.Cells(i, 4).Value = TextBox3.Value
+ws.Cells(i, 5).Value = TextBox6.Value
+ws.Cells(i, 6).Value = TextBox7.Value
+ws.Cells(i, 7).Value = TextBox8.Value
+ws.Cells(i, 8).Value = TextBox5.Value
+ws.Cells(i, 9).Value = TextBox10.Value
+ws.Cells(i, 10).Value = TextBox11.Value
+ws.Cells(i, 11).Value = TextBox12.Value
+ws.Cells(i, 12).Value = TextBox9.Value
+ws.Cells(i, 13).Value = TextBox14.Value
+ws.Cells(i, 14).Value = TextBox15.Value
+ws.Cells(i, 15).Value = TextBox16.Value
+ws.Cells(i, 16).Value = TextBox13.Value
+
+ws.Cells(i, 17).Value = TextBox17.Value
+ws.Cells(i, 18).Value = TextBox18.Value
+ws.Cells(i, 19).Value = TextBox20.Value
+ws.Cells(i, 20).Value = TextBox19.Value
+ws.Cells(i, 21).Value = TextBox22.Value
+ws.Cells(i, 22).Value = TextBox23.Value
+ws.Cells(i, 23).Value = TextBox24.Value
+ws.Cells(i, 24).Value = TextBox21.Value
+ws.Cells(i, 25).Value = TextBox26.Value
+ws.Cells(i, 26).Value = TextBox27.Value
+ws.Cells(i, 27).Value = TextBox28.Value
+ws.Cells(i, 28).Value = TextBox25.Value
+ws.Cells(i, 29).Value = TextBox30.Value
+ws.Cells(i, 30).Value = TextBox31.Value
+ws.Cells(i, 31).Value = TextBox32.Value
+ws.Cells(i, 32).Value = TextBox29.Value
+ws.Cells(i, 33).Value = TextBox34.Value
+ws.Cells(i, 34).Value = TextBox35.Value
+ws.Cells(i, 35).Value = TextBox36.Value
+ws.Cells(i, 36).Value = TextBox33.Value
+ws.Cells(i, 37).Value = TextBox39.Value
+ws.Cells(i, 38).Value = TextBox40.Value
+ws.Cells(i, 39).Value = TextBox42.Value
+ws.Cells(i, 40).Value = TextBox41.Value
+ws.Cells(i, 41).Value = TextBox44.Value
+ws.Cells(i, 42).Value = TextBox45.Value
+ws.Cells(i, 43).Value = TextBox46.Value
+ws.Cells(i, 44).Value = TextBox43.Value
+ws.Cells(i, 45).Value = TextBox48.Value
+ws.Cells(i, 46).Value = TextBox49.Value
+ws.Cells(i, 47).Value = TextBox50.Value
+End Sub
+
+Private Sub CommandButton2_Click()
+Call Listfacilities
+
+End Sub
+
+Private Sub CommandButton3_Click()
+Call Listfacilities
+End Sub
+
+Private Sub CommandButton4_Click()
+Unload Me
+End Sub
+
+Private Sub Image1_BeforeDragOver(ByVal Cancel As MSForms.ReturnBoolean, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal DragState As MSForms.fmDragState, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
+End Sub
+
+Private Sub Label1_Click()
+
+End Sub
+
+Private Sub Label11_Click()
+
+End Sub
+
+Private Sub Label15_Click()
+
+End Sub
+
+Private Sub Label19_Click()
+
+End Sub
+
+Private Sub Label2_Click()
+
+End Sub
+
+Private Sub Label22_Click()
+
+End Sub
+
+Private Sub Label23_Click()
+
+End Sub
+
+Private Sub Label25_Click()
+
+End Sub
+
+Private Sub Label29_Click()
+
+End Sub
+
+Private Sub Label34_Click()
+
+End Sub
+
+Private Sub Label38_Click()
+
+End Sub
+
+Private Sub Label8_Click()
+
+End Sub
+
+Private Sub Label9_Click()
+
+End Sub
+
+Private Sub ListBox1_Click()
+
+End Sub
+
+Private Sub TextBox1_Change()
+
+End Sub
+
+Private Sub TextBox51_Change()
+
+End Sub
+
+Private Sub UserForm_Initialize()
+    Dim ws As Worksheet
+    Dim lastRow As Long
+    Dim rng As Range
+    Dim cell As Range
+
+    ' Set the worksheet
+    Set ws = ThisWorkbook.Sheets("Capacity Sheet")
+
+    ' Find the last row with data in Column A
+    lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
+
+    ' Set the range to the data in Column A
+    Set rng = ws.Range("A2:A" & lastRow)
+
+    ' Clear the ComboBox
+    Me.ComboBox1.Clear
+
+    ' Add the data to the ComboBox
+    For Each cell In rng
+        Me.ComboBox1.AddItem cell.Value
+    Next cell
+
+        
+    
+End Sub
